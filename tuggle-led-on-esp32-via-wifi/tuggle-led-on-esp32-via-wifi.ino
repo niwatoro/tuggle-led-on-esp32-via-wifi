@@ -3,8 +3,9 @@
 #include <WiFi.h>
 #include <WebServer.h>
 
-const char *ssid = "IODATA-xxxxxx-2G";
-const char *pass = "XXXXXXXXXXXXX";
+const char *SSID = "IODATA-xxxxxx-2G";
+const char *PASS = "XXXXXXXXXXXXX";
+const int LED_PIN = 5;
 
 WebServer Server(80);
 
@@ -18,14 +19,14 @@ void SendOnMessage() {
   Serial.println("Sent ON message.");
   String message = "<html lang='ja'><input type='checkbox' checked='true' onclick='location.href=\"\off\"' style='width: 200px; height: 200px'></html>";
   Server.send(200, "text/html", message);
-  digitalWrite(5, HIGH);
+  digitalWrite(LED_PIN, HIGH);
 }
 
 void SendOffMessage() {
   Serial.println("Sent OFF message.");
   String message = "<html lang='ja'><input type='checkbox' onclick='location.href=\"\on\"' style='width: 200px; height: 200px'></html>";
   Server.send(200, "text/html", message);
-  digitalWrite(5, LOW);
+  digitalWrite(LED_PIN, LOW);
 }
 
 void SendNotFound() {
@@ -38,12 +39,12 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Starting...");
 
-  pinMode(5, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);
 
   delay(100);
 
   WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, pass);
+  WiFi.begin(SSID, PASS);
 
   Serial.println("Connecting...");
 
