@@ -4,26 +4,26 @@
 #include <WebServer.h>
 
 const char *ssid = "IODATA-xxxxxx-2G";
-const char *pass = "XXXXXXXXX";
+const char *pass = "XXXXXXXXXXXXX";
 
 WebServer Server(80);
 
 void SendMessage() {
   Serial.println("Sent message.");
-  String message = "<html lang='ja'><input type='checkbox' onclick='location.href=\"/on\"'></html>";
+  String message = "<html lang='ja'><input type='checkbox' onclick='location.href=\"/on\"' style='width: 200px; height: 200px'></html>";
   Server.send(200, "text/html", message);
 }
 
 void SendOnMessage() {
   Serial.println("Sent ON message.");
-  String message = "<html lang='ja'><input type='checkbox' checked='true' onclick='location.href=\"\off\"'></html>";
+  String message = "<html lang='ja'><input type='checkbox' checked='true' onclick='location.href=\"\off\"' style='width: 200px; height: 200px'></html>";
   Server.send(200, "text/html", message);
   digitalWrite(5, HIGH);
 }
 
 void SendOffMessage() {
   Serial.println("Sent OFF message.");
-  String message = "<html lang='ja'><input type='checkbox' onclick='location.href=\"\on\"'></html>";
+  String message = "<html lang='ja'><input type='checkbox' onclick='location.href=\"\on\"' style='width: 200px; height: 200px'></html>";
   Server.send(200, "text/html", message);
   digitalWrite(5, LOW);
 }
